@@ -39,6 +39,8 @@ public class ClientMain : MonoBehaviour {
         sphere.useGravity = true;
         sphere.isKinematic = false;
         m_fTimeControl = 0;
+
+        
 	}
 	
 	// Update is called once per frame
