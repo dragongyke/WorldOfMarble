@@ -39,7 +39,6 @@ public class ClientMain : MonoBehaviour {
         sphere.useGravity = true;
         sphere.isKinematic = false;
         m_fTimeControl = 0;
-        
 	}
 	
 	// Update is called once per frame
@@ -78,5 +77,8 @@ public class ClientMain : MonoBehaviour {
             sphere_2.freezeRotation = false;
             sphere_1.AddForce(new Vector3(-1, 0, 0.05f) * 400);
         }
+
+
+
     }
 }
