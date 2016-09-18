@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{68DB3C57-39B7-47B8-B43E-EAA64982E2A2}") = "WorldOfMarble", "Assembly-CSharp-firstpass.csproj", "{63569867-B1E2-B216-4D6F-163C994AB3FB}"
+EndProject
+Project("{68DB3C57-39B7-47B8-B43E-EAA64982E2A2}") = "WorldOfMarble", "Assembly-CSharp.csproj", "{12CDB655-B64B-9528-8B32-33D4865FC216}"
+EndProject
+Project("{68DB3C57-39B7-47B8-B43E-EAA64982E2A2}") = "WorldOfMarble", "Assembly-CSharp-Editor.csproj", "{4C2E32C6-3D6C-46D6-B7A2-9F57C91419C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63569867-B1E2-B216-4D6F-163C994AB3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63569867-B1E2-B216-4D6F-163C994AB3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63569867-B1E2-B216-4D6F-163C994AB3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63569867-B1E2-B216-4D6F-163C994AB3FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12CDB655-B64B-9528-8B32-33D4865FC216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12CDB655-B64B-9528-8B32-33D4865FC216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12CDB655-B64B-9528-8B32-33D4865FC216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12CDB655-B64B-9528-8B32-33D4865FC216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C2E32C6-3D6C-46D6-B7A2-9F57C91419C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2E32C6-3D6C-46D6-B7A2-9F57C91419C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C2E32C6-3D6C-46D6-B7A2-9F57C91419C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C2E32C6-3D6C-46D6-B7A2-9F57C91419C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
