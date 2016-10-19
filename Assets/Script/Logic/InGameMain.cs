@@ -57,7 +57,16 @@ public class InGameMain : MonoBehaviour
         {
             // adjust shoot angle, change shooter, adjust force
             // angle 
-
+#if UNITY_EDITOR
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                m_MainCamera.transform.RotateAround(m_cSphereOne.transform.position, Vector3.up, 1);
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                m_MainCamera.transform.RotateAround(m_cSphereOne.transform.position, Vector3.up, -1);
+            }
+#endif
             
         }
         else if (m_CurGameStatus == GameStatus.Shoot)
