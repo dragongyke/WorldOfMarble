@@ -7,26 +7,22 @@ using System.Collections;
 /// </summary>
 public class InGameMain : MonoBehaviour 
 {
-    public UIInGame m_cUIInGame;
+    [SerializeField]
+    private UIInGame m_cUIInGame;
+    [SerializeField]
+    private Transform m_Arrow;
 
-    private static InGameMain m_cInGameMain;
     private Camera m_MainCamera;
     private GameObject m_cSphereOne;
     private GameObject m_cSphereTwo;
-    private GameStatus m_CurGameStatus = GameStatus.None;
 
-    private Quaternion m_qInitRotation;
+    private Vector3 m_CurDirction;
 
-    void Awake()
-    {
-        if (m_cInGameMain == null)
-            m_cInGameMain = this;
-        else
-        {
-            Debug.LogError("InGameMain is only one instance!");
-            return;
-        }
-    }
+    public GameStatus m_CurGameStatus = GameStatus.None;
+    public GameObject SphereOne { get { return m_cSphereOne; } }
+    public GameObject SphereTwo { get { return m_cSphereTwo; } }
+    public Vector3 CurDirction { get { return m_CurDirction; } }
+
 	// Use this for initialization
 	void Start()
     {
@@ -39,14 +35,17 @@ public class InGameMain : MonoBehaviour
         m_cSphereOne.transform.localPosition = new Vector3(5, 1f, 0);
         m_cSphereTwo = GameObject.Find("Sphere2");
         m_cSphereTwo.transform.localPosition = new Vector3(-4, 0.6f, 0);
+
+        m_Arrow.position = new Vector3(m_cSphereOne.transform.position.x, 0.01f, m_cSphereOne.transform.position.z);
         
-        m_cUIInGame.Init(m_cSphereOne,m_cSphereTwo);
+        m_cUIInGame.Init(this);
         m_CurGameStatus = GameStatus.PrepareForShoot;
 
         if (m_cSphereOne)
         {
             m_MainCamera.transform.localPosition = m_cSphereOne.transform.localPosition + Vector3.one * 2;
             SetCameraLookAt(m_cSphereOne.transform);
+            UpdateDirectionArrow();
         }
 	}
 
@@ -61,17 +60,35 @@ public class InGameMain : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 m_MainCamera.transform.RotateAround(m_cSphereOne.transform.position, Vector3.up, 1);
+                UpdateDirectionArrow();
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 m_MainCamera.transform.RotateAround(m_cSphereOne.transform.position, Vector3.up, -1);
+                UpdateDirectionArrow();
             }
 #endif
             
         }
         else if (m_CurGameStatus == GameStatus.Shoot)
         {
-
+            m_CurGameStatus = GameStatus.Moving;
+        }
+        else if (m_CurGameStatus == GameStatus.Moving)
+        {
+           
+            if (m_cSphereOne.GetComponent<Rigidbody>().velocity == Vector3.zero)
+            {
+                m_CurGameStatus = GameStatus.WaitingForOthers;
+            }
+            else
+            {
+                if (m_cSphereOne.GetComponent<Rigidbody>().velocity.magnitude < 0.25f)
+                {
+                    m_cSphereOne.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    m_cSphereOne.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+                }
+            }
         }
         else if (m_CurGameStatus == GameStatus.WaitingForOthers)
         {
@@ -83,6 +100,18 @@ public class InGameMain : MonoBehaviour
     private void SetCameraLookAt(Transform target)
     {
         m_MainCamera.transform.forward = Vector3.Normalize(target.position - m_MainCamera.transform.position);
+    }
+
+    private void UpdateDirectionArrow()
+    {
+        m_CurDirction = m_cSphereOne.transform.position - m_MainCamera.transform.position;
+        m_CurDirction.y = 0;
+        float angle = Vector3.Angle(m_CurDirction, Vector3.right);
+        float dirction = Vector3.Dot(m_CurDirction, Vector3.forward);
+        //Debug.Log("angle = " + angle + ", dirction = " + dirction);
+        if (dirction < 0) angle = angle + 90;
+        if (dirction > 0) angle = 90 - angle;
+        m_Arrow.localRotation = Quaternion.Euler(90, angle, 0);
     }
 
 }

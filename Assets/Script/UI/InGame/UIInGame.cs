@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class UIInGame : MonoBehaviour
 {
+    private InGameMain m_cInGameMain;
     private GameObject m_cSphereOne;
     private GameObject m_cSphereTwo;
 
     private Rigidbody m_RigidbodyOne;
     private Rigidbody m_RigidbodyTwo;
 
-    public void Init(GameObject obj1, GameObject Obj2)
+    public void Init(InGameMain main)
     {
-        m_cSphereOne = obj1;
-        m_cSphereTwo = Obj2;
+        m_cInGameMain = main;
+        m_cSphereOne = main.SphereOne;
+        m_cSphereTwo = main.SphereTwo;
         m_RigidbodyOne = m_cSphereOne.GetComponent<Rigidbody>();
         m_RigidbodyTwo = m_cSphereTwo.GetComponent<Rigidbody>();
     }
@@ -21,7 +23,8 @@ public class UIInGame : MonoBehaviour
     {
         m_RigidbodyOne.freezeRotation = false;
         m_RigidbodyTwo.freezeRotation = false;
-        m_RigidbodyOne.AddForce(new Vector3(-1, 0, 0.02f) * 800);
+        m_RigidbodyOne.AddForce(m_cInGameMain.CurDirction.normalized * 500);
+        m_cInGameMain.m_CurGameStatus = GameStatus.Shoot;
     }
 
     public void OnClickReset()

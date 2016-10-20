@@ -20,7 +20,7 @@ public class MarbleController : MonoBehaviour
     {
         if (m_RigidBody == null || m_RigidBody.velocity == Vector3.zero) return;
 
-        if (m_RigidBody.velocity.magnitude < 0.1f)
+        if (m_RigidBody.velocity.magnitude < 0.5f)
         {
             m_RigidBody.velocity = Vector3.zero;
             m_RigidBody.angularVelocity = Vector3.zero;
