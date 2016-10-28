@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class UIInGame : MonoBehaviour
 {
+    [SerializeField]
+    private UISlider m_SliderForce;
+
     private InGameMain m_cInGameMain;
     private GameObject m_cSphereOne;
     private GameObject m_cSphereTwo;
@@ -25,6 +28,7 @@ public class UIInGame : MonoBehaviour
         m_RigidbodyTwo.freezeRotation = false;
         m_RigidbodyOne.AddForce(m_cInGameMain.CurDirction.normalized * 500);
         m_cInGameMain.m_CurGameStatus = GameStatus.Shoot;
+        
     }
 
     public void OnClickReset()
