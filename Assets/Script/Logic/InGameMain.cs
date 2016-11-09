@@ -18,6 +18,7 @@ public class InGameMain : MonoBehaviour
 
     private Vector3 m_CurDirction;
 
+
     public GameStatus m_CurGameStatus = GameStatus.None;
     public GameObject SphereOne { get { return m_cSphereOne; } }
     public GameObject SphereTwo { get { return m_cSphereTwo; } }
