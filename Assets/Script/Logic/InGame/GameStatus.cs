@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public enum GameStatus
+public enum GameStates
 {
     None,
     PrepareForShoot,
